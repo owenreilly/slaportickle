@@ -6,7 +6,7 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+  background(220); // Draw background to clear canvas
 
   stickFigure.display();
 
@@ -38,7 +38,7 @@ class StickFigure {
 
   display() {
     // Draw stick figure
-    noFill(); // Remove fill from head
+    background(220); // Draw background to clear head
     stroke(0); // Set stroke color
     ellipse(this.x, this.y - this.headSize / 2, this.headSize, this.headSize); // Head
 
