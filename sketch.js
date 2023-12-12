@@ -1,3 +1,6 @@
+slapSound = loadSound('slap.mp3');
+tickleSound = loadSound('tickle.mp3');
+
 let stickFigure;
 let slapSound, tickleSound;
 
