@@ -17,7 +17,7 @@ function draw() {
   rect(0, 0, 40, height); // Slap bar
 }
 
-function mousePressed() {
+function mouseClicked() {
   if (mouseX > width - 40) {
     // Tickle
     stickFigure.tickle();
