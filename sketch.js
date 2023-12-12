@@ -76,7 +76,6 @@ class StickFigure {
     }, 1000); // Reset laughing state after 1 second
   }
 }
-
 // slapSound = loadSound('slap.mp3');
 // tickleSound = loadSound('tickle.mp3');
 
