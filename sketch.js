@@ -15,6 +15,13 @@ function draw() {
   rect(width - 40, 0, 40, height); // Tickle bar
   fill(200, 50, 50);
   rect(0, 0, 40, height); // Slap bar
+
+  // Label the bars
+  fill(0);
+  textAlign(CENTER, CENTER);
+  textSize(16);
+  text("Tickle", width - 20, height / 2);
+  text("Slap", 20, height / 2);
 }
 
 function mouseClicked() {
