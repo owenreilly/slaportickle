@@ -5,108 +5,128 @@ function preload() {
   slapSound = loadSound('slap.mp3');
 }
 
-
 function setup() {
+
   createCanvas(400, 400);
+  
   stickFigure = new StickFigure(width / 2, height / 2);
+
 }
 
 function draw() {
+
   background(220);
 
   stickFigure.display();
-
-  // Display bars for slap and tickle
+  
   fill(50, 200, 50);
-  rect(width - 40, 0, 40, height); // Tickle bar
-  fill(200, 50, 50);
-  rect(0, 0, 40, height); // Slap bar
+  rect(width - 40, 0, 40, height);
+  
+  fill(200, 50, 50); 
+  rect(0, 0, 40, height);
 
-  // Label the bars
   fill(0);
   textAlign(CENTER, CENTER);
-  textSize(16);
+  textSize(16);  
   text("Tickle", width - 20, height / 2);
   text("Slap", 20, height / 2);
+  
 }
 
 function mouseClicked() {
+
   if (mouseX > width - 40) {
-    // Tickle
     stickFigure.tickle();
   } else if (mouseX < 40) {
-    // Slap
     stickFigure.slap();
   }
+
 }
 
 class StickFigure {
+
   constructor(x, y) {
+  
     this.x = x;
     this.y = y;
-    this.headSize = 60; // Larger head size
+    
+    this.headSize = 80;
     this.isWincing = false;
-    this.isLaughing = false;
+    this.isLaughing = false;   
+    
   }
 
   display() {
-    // Draw stick figure
-    background(220); // Draw background to clear canvas
-    stroke(0); // Set stroke color
 
-    // Head
-    noFill(); // Remove fill from head
-    ellipse(this.x, this.y - this.headSize / 2, this.headSize, this.headSize);
+    stroke(0);
+    
+    noFill();
+    ellipse(this.x, this.y - 40, 80, 80);   
+    
+    line(this.x, this.y, this.x, this.y + 60);
+   
+    line(this.x, this.y + 15, this.x - 20, this.y + 15);
+    
+    line(this.x, this.y + 15, this.x + 20, this.y + 15);
+    
+    line(this.x, this.y + 60, this.x - 15, this.y + 90);
+    
+    line(this.x, this.y + 60, this.x + 15, this.y + 90);
 
-    // Torso
-    line(this.x, this.y, this.x, this.y + 80);
-
-    // Left arm
-    line(this.x, this.y + 20, this.x - 30, this.y + 20);
-
-    // Right arm
-    line(this.x, this.y + 20, this.x + 30, this.y + 20);
-
-    // Left leg
-    line(this.x, this.y + 80, this.x - 20, this.y + 120);
-
-    // Right leg
-    line(this.x, this.y + 80, this.x + 20, this.y + 120);
-
-    // Draw facial expression based on state
     if (this.isWincing) {
-      ellipse(this.x - 10, this.y - this.headSize / 2 - 10, 10, 10); // Left eye
-      ellipse(this.x + 10, this.y - this.headSize / 2 - 10, 10, 10); // Right eye
-      line(this.x - 5, this.y - this.headSize / 2 + 10, this.x + 5, this.y - this.headSize / 2 + 10); // Mouth (frowning)
+ line(this.x - 7, this.y - 44, this.x + 7, this.y - 36);  
+  line(this.x - 3, this.y - 36, this.x + 3, this.y - 44);
+   
+  line(this.x - 8, this.y - 50, this.x - 12, this.y - 46);
+  line(this.x + 8, this.y - 50, this.x + 12, this.y - 46);
+
+  // Big open mouth 
+  ellipse(this.x, this.y - 25, 12, 12);
+
     } else if (this.isLaughing) {
-      ellipse(this.x - 10, this.y - this.headSize / 2 - 10, 10, 10); // Left eye
-      ellipse(this.x + 10, this.y - this.headSize / 2 - 10, 10, 10); // Right eye
-      line(this.x - 5, this.y - this.headSize / 2 + 10, this.x + 5, this.y - this.headSize / 2 + 10); // Mouth (smiling)
+
+  line(this.x - 10, this.y - 48, this.x - 15, this.y - 44);
+  line(this.x + 10, this.y - 48, this.x + 15, this.y - 44);
+
+  ellipse(this.x - 5, this.y - 35, 5, 10); 
+  ellipse(this.x + 5, this.y - 35, 5, 10); 
+  
+  arc(this.x, this.y - 25, 15, 10, 0, PI);
+
     } else {
-      ellipse(this.x - 10, this.y - this.headSize / 2 - 10, 10, 10); // Left eye
-      ellipse(this.x + 10, this.y - this.headSize / 2 - 10, 10, 10); // Right eye
-      line(this.x - 5, this.y - this.headSize / 2 + 10, this.x + 5, this.y - this.headSize / 2 + 10); // Mouth (neutral)
+
+ellipse(this.x - 5, this.y - 40, 10, 10); 
+ellipse(this.x + 5, this.y - 40, 10, 10);
+line(this.x - 5, this.y - 30, this.x + 5,  this.y - 30);;  
+
     }
-  }
+  
+  }  
 
   slap() {
-    // Slap action
+
+    slapSound.play();
     this.isWincing = true;
-    this.isLaughing = false;
+
     setTimeout(() => {
       this.isWincing = false;
-    }, 1000); // Reset wincing state after 1 second
+    }, 1000);
+
   }
 
   tickle() {
-    // Tickle action
-    this.isWincing = false;
+    tickleSound.play();
     this.isLaughing = true;
+
     setTimeout(() => {
-      this.isLaughing = false;
-    }, 1000); // Reset laughing state after 1 second
-  }
+      this.isLaughing = false; 
+    }, 1000);
+
+  }  
+
 }
+
+
 // slapSound = loadSound('slap.mp3');
 // tickleSound = loadSound('tickle.mp3');
 
