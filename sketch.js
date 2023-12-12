@@ -45,16 +45,16 @@ class StickFigure {
     noFill(); // Remove fill from head
     ellipse(this.x, this.y - this.headSize / 2, this.headSize, this.headSize);
 
-    // Body
-    line(this.x, this.y, this.x, this.y + 100);
+    // Torso
+    line(this.x, this.y, this.x, this.y + 50);
 
     // Arms
-    line(this.x, this.y + 20, this.x - 30, this.y + 50); // Left arm
-    line(this.x, this.y + 20, this.x + 30, this.y + 50); // Right arm
+    line(this.x, this.y + 10, this.x - 20, this.y + 30); // Left arm
+    line(this.x, this.y + 10, this.x + 20, this.y + 30); // Right arm
 
     // Legs
-    line(this.x, this.y + 100, this.x - 20, this.y + 150); // Left leg
-    line(this.x, this.y + 100, this.x + 20, this.y + 150); // Right leg
+    line(this.x, this.y + 50, this.x - 10, this.y + 80); // Left leg
+    line(this.x, this.y + 50, this.x + 10, this.y + 80); // Right leg
 
     // Draw facial expression based on state
     if (this.isWincing) {
@@ -90,6 +90,8 @@ class StickFigure {
     }, 1000); // Reset laughing state after 1 second
   }
 }
+
+
 // slapSound = loadSound('slap.mp3');
 // tickleSound = loadSound('tickle.mp3');
 
