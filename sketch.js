@@ -6,7 +6,7 @@ function setup() {
 }
 
 function draw() {
-  background(220); // Draw background to clear canvas
+  background(220);
 
   stickFigure.display();
 
@@ -38,9 +38,23 @@ class StickFigure {
 
   display() {
     // Draw stick figure
-    background(220); // Draw background to clear head
+    background(220); // Draw background to clear canvas
     stroke(0); // Set stroke color
-    ellipse(this.x, this.y - this.headSize / 2, this.headSize, this.headSize); // Head
+
+    // Head
+    noFill(); // Remove fill from head
+    ellipse(this.x, this.y - this.headSize / 2, this.headSize, this.headSize);
+
+    // Body
+    line(this.x, this.y, this.x, this.y + 100);
+
+    // Arms
+    line(this.x, this.y + 20, this.x - 30, this.y + 50); // Left arm
+    line(this.x, this.y + 20, this.x + 30, this.y + 50); // Right arm
+
+    // Legs
+    line(this.x, this.y + 100, this.x - 20, this.y + 150); // Left leg
+    line(this.x, this.y + 100, this.x + 20, this.y + 150); // Right leg
 
     // Draw facial expression based on state
     if (this.isWincing) {
