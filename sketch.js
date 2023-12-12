@@ -31,30 +31,53 @@ class StickFigure {
   constructor(x, y) {
     this.x = x;
     this.y = y;
+    this.headSize = 40; // Initial head size
+    this.isWincing = false;
+    this.isLaughing = false;
   }
 
   display() {
     // Draw stick figure
     fill(0);
-    ellipse(this.x, this.y - 30, 20, 20); // Head
-    line(this.x, this.y, this.x, this.y + 50); // Body
-    line(this.x, this.y + 20, this.x - 20, this.y); // Left arm
-    line(this.x, this.y + 20, this.x + 20, this.y); // Right arm
-    line(this.x, this.y + 50, this.x - 20, this.y + 80); // Left leg
-    line(this.x, this.y + 50, this.x + 20, this.y + 80); // Right leg
+    ellipse(this.x, this.y - this.headSize / 2, this.headSize, this.headSize); // Head
+
+    // Draw facial expression based on state
+    if (this.isWincing) {
+      ellipse(this.x - 8, this.y - this.headSize / 2 - 5, 5, 5); // Left eye
+      ellipse(this.x + 8, this.y - this.headSize / 2 - 5, 5, 5); // Right eye
+      noFill();
+      arc(this.x, this.y - this.headSize / 2 + 5, 20, 10, 0, PI, CHORD); // Mouth (frowning)
+    } else if (this.isLaughing) {
+      ellipse(this.x - 8, this.y - this.headSize / 2 - 5, 5, 5); // Left eye
+      ellipse(this.x + 8, this.y - this.headSize / 2 - 5, 5, 5); // Right eye
+      noFill();
+      arc(this.x, this.y - this.headSize / 2 + 5, 20, 10, 0, PI, CHORD); // Mouth (smiling)
+    } else {
+      ellipse(this.x - 8, this.y - this.headSize / 2 - 5, 5, 5); // Left eye
+      ellipse(this.x + 8, this.y - this.headSize / 2 - 5, 5, 5); // Right eye
+      noFill();
+      line(this.x - 5, this.y - this.headSize / 2 + 5, this.x + 5, this.y - this.headSize / 2 + 5); // Mouth (neutral)
+    }
   }
 
   slap() {
     // Slap action
-    // You can add any custom action here if needed
+    this.isWincing = true;
+    this.isLaughing = false;
+    setTimeout(() => {
+      this.isWincing = false;
+    }, 1000); // Reset wincing state after 1 second
   }
 
   tickle() {
     // Tickle action
-    // You can add any custom action here if needed
+    this.isWincing = false;
+    this.isLaughing = true;
+    setTimeout(() => {
+      this.isLaughing = false;
+    }, 1000); // Reset laughing state after 1 second
   }
 }
-
 
 
 
