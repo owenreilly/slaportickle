@@ -1,5 +1,11 @@
 let stickFigure;
 
+function preload() {
+  tickleSound = loadSound('tickle.mp3');
+  slapSound = loadSound('slap.mp3');
+}
+
+
 function setup() {
   createCanvas(400, 400);
   stickFigure = new StickFigure(width / 2, height / 2);
