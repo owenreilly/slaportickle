@@ -2,7 +2,7 @@ let stickFigure;
 
 function preload() {
   tickleSound = loadSound('tickle.mp3');
-  #slapSound = loadSound('slap.mp3');
+  
 }
 
 function setup() {
