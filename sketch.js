@@ -31,32 +31,30 @@ class StickFigure {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.headSize = 40; // Initial head size
+    this.headSize = 60; // Larger head size
     this.isWincing = false;
     this.isLaughing = false;
   }
 
   display() {
     // Draw stick figure
-    fill(0);
+    noFill(); // Remove fill from head
+    stroke(0); // Set stroke color
     ellipse(this.x, this.y - this.headSize / 2, this.headSize, this.headSize); // Head
 
     // Draw facial expression based on state
     if (this.isWincing) {
-      ellipse(this.x - 8, this.y - this.headSize / 2 - 5, 5, 5); // Left eye
-      ellipse(this.x + 8, this.y - this.headSize / 2 - 5, 5, 5); // Right eye
-      noFill();
-      arc(this.x, this.y - this.headSize / 2 + 5, 20, 10, 0, PI, CHORD); // Mouth (frowning)
+      ellipse(this.x - 10, this.y - this.headSize / 2 - 10, 10, 10); // Left eye
+      ellipse(this.x + 10, this.y - this.headSize / 2 - 10, 10, 10); // Right eye
+      line(this.x - 5, this.y - this.headSize / 2 + 10, this.x + 5, this.y - this.headSize / 2 + 10); // Mouth (frowning)
     } else if (this.isLaughing) {
-      ellipse(this.x - 8, this.y - this.headSize / 2 - 5, 5, 5); // Left eye
-      ellipse(this.x + 8, this.y - this.headSize / 2 - 5, 5, 5); // Right eye
-      noFill();
-      arc(this.x, this.y - this.headSize / 2 + 5, 20, 10, 0, PI, CHORD); // Mouth (smiling)
+      ellipse(this.x - 10, this.y - this.headSize / 2 - 10, 10, 10); // Left eye
+      ellipse(this.x + 10, this.y - this.headSize / 2 - 10, 10, 10); // Right eye
+      line(this.x - 5, this.y - this.headSize / 2 + 10, this.x + 5, this.y - this.headSize / 2 + 10); // Mouth (smiling)
     } else {
-      ellipse(this.x - 8, this.y - this.headSize / 2 - 5, 5, 5); // Left eye
-      ellipse(this.x + 8, this.y - this.headSize / 2 - 5, 5, 5); // Right eye
-      noFill();
-      line(this.x - 5, this.y - this.headSize / 2 + 5, this.x + 5, this.y - this.headSize / 2 + 5); // Mouth (neutral)
+      ellipse(this.x - 10, this.y - this.headSize / 2 - 10, 10, 10); // Left eye
+      ellipse(this.x + 10, this.y - this.headSize / 2 - 10, 10, 10); // Right eye
+      line(this.x - 5, this.y - this.headSize / 2 + 10, this.x + 5, this.y - this.headSize / 2 + 10); // Mouth (neutral)
     }
   }
 
@@ -78,9 +76,6 @@ class StickFigure {
     }, 1000); // Reset laughing state after 1 second
   }
 }
-
-
-
 
 // slapSound = loadSound('slap.mp3');
 // tickleSound = loadSound('tickle.mp3');
