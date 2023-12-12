@@ -1,26 +1,20 @@
 let stickFigure;
 
 function setup() {
-
   createCanvas(400, 400);
-  
   stickFigure = new StickFigure(width / 2, height / 2);
-
 }
 
 function draw() {
-
   background(220);
-
   stickFigure.display();
-  
   fill(50, 200, 50);
-  rect(width - 40, 0, 40, height);
   
+  rect(width - 40, 0, 40, height);
   fill(200, 50, 50); 
   rect(0, 0, 40, height);
-
   fill(0);
+  
   textAlign(CENTER, CENTER);
   textSize(16);  
   text("Tickle", width - 20, height / 2);
@@ -35,7 +29,6 @@ function mouseClicked() {
   } else if (mouseX < 40) {
     stickFigure.slap();
   }
-
 }
 
 class StickFigure {
@@ -57,15 +50,10 @@ class StickFigure {
     
     noFill();
     ellipse(this.x, this.y - 40, 80, 80);   
-    
     line(this.x, this.y, this.x, this.y + 60);
-   
     line(this.x, this.y + 15, this.x - 20, this.y + 15);
-    
     line(this.x, this.y + 15, this.x + 20, this.y + 15);
-    
     line(this.x, this.y + 60, this.x - 15, this.y + 90);
-    
     line(this.x, this.y + 60, this.x + 15, this.y + 90);
 
     if (this.isWincing) {
@@ -99,9 +87,7 @@ line(this.x - 5, this.y - 30, this.x + 5,  this.y - 30);;
   }  
 
   slap() {
-
     this.isWincing = true;
-
     setTimeout(() => {
       this.isWincing = false;
     }, 1000);
@@ -109,9 +95,7 @@ line(this.x - 5, this.y - 30, this.x + 5,  this.y - 30);;
   }
 
   tickle() {
-
     this.isLaughing = true;
-
     setTimeout(() => {
       this.isLaughing = false; 
     }, 1000);
